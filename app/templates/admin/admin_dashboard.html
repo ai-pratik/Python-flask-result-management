@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+
+<body class="bg-gray-200">
+    <div class="container mx-auto">
+        <h1 class="text-3xl font-bold my-8">Admin Dashboard</h1>
+        <div class="flex justify-between mb-4">
+            <a href="{{ url_for('add_student') }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Add Student</a>
+            <a href="{{ url_for('view_students') }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">View Students</a>
+        </div>
+        <!-- Add other admin dashboard content here -->
+    </div>
+</body>
+
+</html>

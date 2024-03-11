@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Student</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+
+<body class="bg-gray-200">
+    <div class="container mx-auto">
+        <h1 class="text-3xl font-bold my-8">Add Student</h1>
+        <form action="{{ url_for('add_student') }}" method="POST">
+            <div class="mb-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="name">Name</label>
+                <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="name" type="text" name="name" placeholder="Name" required>
+            </div>
+            <div class="mb-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="age">Age</label>
+                <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="age" type="number" name="age" placeholder="Age" required>
+            </div>
+            <div class="mb-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="grade">Grade</label>
+                <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="grade" type="text" name="grade" placeholder="Grade" required>
+            </div>
+            <div class="mb-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="branch">Branch</label>
+                <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="branch" type="text" name="branch" placeholder="Branch" required>
+            </div>
+            <div class="mb-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="department">Department</label>
+                <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="department" type="text" name="department" placeholder="Department" required>
+            </div>
+            <hr class="my-4">
+            <h2 class="text-2xl font-bold mb-4">Subject Names and Marks</h2>
+            <div id="subject_fields">
+                <div class="mb-4">
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="subject1">Subject 1</label>
+                    <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="subject1" type="text" name="subject1" placeholder="Subject Name" required>
+                    <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="mark1" type="number" name="mark1" placeholder="Mark" required>
+                </div>
+            </div>
+            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button" onclick="addSubjectField()">Add Subject</button>
+            <div class="flex items-center justify-between mt-4">
+                <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">Add Student</button>
+            </div>
+        </form>
+    </div>
+    <script>
+        let subjectCount = 1;
+
+        function addSubjectField() {
+            if(subjectCount<=6){
+            subjectCount++;
+            const subjectFields = document.getElementById('subject_fields');
+            const newSubjectField = document.createElement('div');
+            newSubjectField.innerHTML = `
+                <div class="mb-4">
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="subject${subjectCount}">Subject ${subjectCount}</label>
+                    <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="subject${subjectCount}" type="text" name="subject${subjectCount}" placeholder="Subject Name" required>
+                    <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="mark${subjectCount}" type="number" name="mark${subjectCount}" placeholder="Mark" required>
+                </div>
+            `;
+            subjectFields.appendChild(newSubjectField);}
+        }
+    </script>
+</body>
+
+</html>

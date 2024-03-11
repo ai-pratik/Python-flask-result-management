@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Students</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-200">
+    <div class="container mx-auto">
+        <h1 class="text-3xl font-bold my-8">Students</h1>
+        <table class="min-w-full divide-y divide-gray-200">
+            <thead>
+                <tr>
+                    <th class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">ID</th>
+                    <th class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
+                    <th class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Age</th>
+                    <th class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Subjects and Marks</th>
+                    <th class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                </tr>
+            </thead>
+            <tbody class="bg-white divide-y divide-gray-200">
+                {% for student in students %}
+                <tr>
+                    <td class="px-6 py-4 whitespace-nowrap">{{ student[0] }}</td>
+                    <td class="px-6 py-4 whitespace-nowrap">{{ student[1] }}</td>
+                    <td class="px-6 py-4 whitespace-nowrap">{{ student[2] }}</td>
+                    <td class="px-6 py-4 whitespace-nowrap">
+                        <div class="flex flex-wrap">
+                            {% if student[0] in subjects %}
+                                {% for subject in subjects[student[0]] %}
+                                    <div class="flex items-center mr-4">
+                                        <div>{{ subject[0] }}:</div>
+                                        <div class="ml-2">{{ subject[1] }}</div>
+                                    </div>
+                                {% endfor %}
+                            {% else %}
+                                No marks available
+                            {% endif %}
+                        </div>
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap">
+                        <!-- <a href="{{ url_for('update_result', student_id=student[0]) }}" class="text-indigo-600 hover:text-indigo-900">Update</a> -->
+                        <form action="{{ url_for('delete_student', student_id=student[0]) }}" method="POST" class="inline-block ml-2">
+                            <button type="submit" class="text-red-600 hover:text-red-900">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
