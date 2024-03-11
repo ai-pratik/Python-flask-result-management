@@ -25,5 +25,7 @@ jobs:
 
   
       - name: Start Flask Application
+        env:
+              FLASK_APP: views.py
         run: flask run --host=0.0.0.0
 
